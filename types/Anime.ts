@@ -44,11 +44,30 @@ export interface AnimeStreaming {
   url: string;
 }
 
+export interface AnimeImage {
+  image_url: string;
+  jpg: [
+    {
+      image_url: string;
+      small_image_url: string;
+      large_image_url: string;
+    }
+  ];
+  webp: [
+    {
+      image_url: string;
+      small_image_url: string;
+      large_image_url: string;
+    }
+  ];
+}
+
 export interface Anime {
   url: string | undefined;
   id: string;
+  mal_id: number;
   title: string;
-  year: number;
+  year: number | string;
   episodes: number;
   synopsis: string;
   demographics: AnimeDemographic[];
@@ -60,4 +79,5 @@ export interface Anime {
   rank: number;
   popularity: string;
   streaming: AnimeStreaming;
+  images: AnimeImage[];
 }

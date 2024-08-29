@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div
       id="home"
-      className="flex flex-col items-center justify-center h-screen"
+      className="flex flex-col items-center justify-center bg-zinc-900 h-screen w-full"
     >
       <h1 className="text-4xl font-bold text-white capitalize">
         Explore the top-rated Anime tailored to your mood

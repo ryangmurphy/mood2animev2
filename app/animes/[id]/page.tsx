@@ -5,6 +5,7 @@ import AnimeCard from "@/components/AnimeCard";
 import { Anime } from "@/types/Anime";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 
 
@@ -33,15 +34,12 @@ export default function SelectedAnimePage() {
   }
 
   return (
-    <div className="bg-slate-800 h-full">
+    <div className="bg-zinc-900 h-full">
       <div className="py-12">
         <Navbar />
       </div>
-        {anime ? (
-          <AnimeCard anime={anime} />
-        ) : (
-          <div>No anime data available</div>
-        )}
-      </div>
+      {anime ? <AnimeCard anime={anime} /> : <div>No anime data available</div>}
+      <Footer />
+    </div>
   );
 }

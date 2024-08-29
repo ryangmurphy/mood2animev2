@@ -1,8 +1,8 @@
 import { Anime } from "../types/Anime";
 
-const fetchAnimeById = async (id: number): Promise<Anime | null> => {
+const fetchAnimeByGenreId = async (genreId: number): Promise<Anime[]> => {
   try {
-    const apiUrl = `https://api.jikan.moe/v4/anime/${id}`;
+    const apiUrl = `https://api.jikan.moe/v4/anime?genres=${genreId}`;
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
@@ -10,11 +10,14 @@ const fetchAnimeById = async (id: number): Promise<Anime | null> => {
     }
 
     const data = await response.json();
-    return data.data;
+    return data.data; // Return the list of anime for the genre
   } catch (error) {
     console.error("API Error", error);
-    return null;
+    return [];
   }
 };
 
-export default fetchAnimeById;
+
+
+
+export default fetchAnimeByGenreId;
