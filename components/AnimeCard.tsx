@@ -42,10 +42,11 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
             </div>
           ) : (
             <Image
-              src="/mm404.png"
+              src="/trailer-notfound.jpg"
               width={400}
               height={400}
               alt="No trailer available"
+              priority
               className="rounded-lg w-fit h-fit"
             />
           )}
@@ -54,30 +55,38 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
         <CardTitle className="text-white text-4xl py-4 ml-14">
           {anime.title}
         </CardTitle>
+
         <CardContent className="">
           <div className="flex flex-row justify-start container">
-            <h3 className="text-2xl font-medium text-white pr-2">
-              {anime.year ?? "N/A"}
+            <h3 className="text-2xl font-semibold text-white pr-2">
+              {anime.year ?? "Year N/A"}
             </h3>
             <span className="text-2xl font-semibold text-white pr-2 mx-2">
               |
             </span>
-            <h3 className="text-2xl font-medium text-white pr-2">
+            <h3 className="text-2xl font-semibold text-white pr-2">
               {anime.episodes ?? "N/A"} Episodes
             </h3>
             <span className="text-2xl font-semibold text-white pr-2">|</span>
-            <h3 className="text-2xl font-medium text-white pr-2">
-              ⭐{anime?.score ? `${anime.score}/10` : "N/A"}
+            <h3 className="text-2xl font-semibold text-white pr-2">
+              ⭐{anime?.score ? `${anime.score}` : "N/A"}
+              <span className="text-white/70">/10</span>
             </h3>
-            {/*
-          <span className="text-2xl font-semibold text-white pr-2">|</span>
-          <h3 className="text-2xl font-medium text-white pr-2">
-            {anime?.rank ? `#${anime.rank}` : "N/A"} Top Rated
-          </h3>
-          */}
+
             <span className="text-2xl font-semibold text-white pr-2">|</span>
-            <h3 className="text-2xl font-medium text-white pr-2">
-              🔥{anime.popularity ? `#${anime.popularity}` : "N/A"} Most Popular
+            <h3 className="text-2xl font-semibold text-white pr-2">
+              🏆Overall Rank:{" "}
+              <span className="font-black tracking-wider text-destructive bg-white rounded-lg px-1 py-1">
+                {anime?.rank ? `#${anime.rank}` : "N/A"}
+              </span>
+            </h3>
+
+            <span className="text-2xl font-semibold text-white pr-2">|</span>
+            <h3 className="text-2xl font-semibold text-white pr-2">
+              🔥Popularity:{" "}
+              <span className="font-black tracking-wider text-destructive bg-white rounded-lg px-1 py-1">
+                {anime.popularity ? `#${anime.popularity}` : "N/A"}{" "}
+              </span>
             </h3>
           </div>
           <div className="">
@@ -104,9 +113,9 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
             </ul>
           </div>
           <CardDescription className="flex flex-col justify-center container mx-auto font-semibold text-slate-200 my-6">
-            <p className="leading-relaxed">
+            <p className="leading-relaxed tracking-wider">
               {anime.synopsis
-                ? anime.synopsis.slice(0, -25)
+                ? anime.synopsis.replace("[Written by MAL Rewrite]", "").trim()
                 : "No synopsis available."}
             </p>
           </CardDescription>
@@ -123,11 +132,6 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
               View on MAL
             </Button>
           </a>
-          <Link href={`/home`}>
-            <Button className="bg-destructive text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
-              NEXT
-            </Button>
-          </Link>
         </CardFooter>
       </Card>
     </div>

@@ -67,7 +67,7 @@ export interface Anime {
   id: string;
   mal_id: number;
   title: string;
-  year: number | string;
+  year: number | string | null;
   episodes: number;
   synopsis: string;
   demographics: AnimeDemographic[];
