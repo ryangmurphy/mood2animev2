@@ -8,8 +8,8 @@ import React from "react";
 
 function page() {
   return (
-    <div className="bg-zinc-900 h-screen w-full">
-      <div className="py-16">
+    <div className="bg-zinc-900 h-screen w-full overflow-x-hidden">
+      <div className="pt-16 px-4">
         <Navbar />
       </div>
       <Home />

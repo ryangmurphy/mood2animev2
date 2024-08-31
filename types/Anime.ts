@@ -66,7 +66,9 @@ export interface Anime {
   url: string | undefined;
   id: string;
   mal_id: number;
+  type: string;
   title: string;
+  title_english: string;
   year: number | string | null;
   episodes: number;
   synopsis: string;

@@ -1,8 +1,10 @@
 import { Anime } from "../types/Anime";
 
-const fetchAnimeByGenreId = async (genreId: number, page: number = 1): Promise<Anime[]> => {
+const fetchAnimeByGenreId = async (genreId: number): Promise<Anime[]> => {
   try {
-    const apiUrl = `https://api.jikan.moe/v4/anime?genres=${genreId}&page=${page}`;
+    // Select a random page number between 1 and the last page
+    const randomPage = Math.floor(Math.random() * 20) + 1; 
+    const apiUrl = `https://api.jikan.moe/v4/top/anime?genres=${genreId}&page=${randomPage}`;
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
@@ -18,4 +20,3 @@ const fetchAnimeByGenreId = async (genreId: number, page: number = 1): Promise<A
 };
 
 export default fetchAnimeByGenreId;
-

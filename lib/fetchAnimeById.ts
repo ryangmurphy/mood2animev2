@@ -2,7 +2,7 @@ import { Anime } from "../types/Anime";
 
 const fetchAnimeById = async (id: number): Promise<Anime | null> => {
   try {
-    const apiUrl = `https://api.jikan.moe/v4/anime/${id}`;
+    const apiUrl = `https://api.jikan.moe/v4/top/anime/${id}`;
     const response = await fetch(apiUrl);
 
     if (!response.ok) {

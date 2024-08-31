@@ -8,6 +8,8 @@ import fetchGenres from "@/lib/fetchGenres";
 import fetchAnimeByGenreId from "../lib/fetchAnimeByGenreId";
 import Link from "next/link";
 
+import { shuffle } from "lodash";
+
 const MoodSelector: React.FC = () => {
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const router = useRouter();
@@ -26,18 +28,18 @@ const MoodSelector: React.FC = () => {
     );
 
     if (matchingGenres.length > 0) {
-      // Step 1: Randomly select a genre from the matching genres
-      const randomGenre =
-        matchingGenres[Math.floor(Math.random() * matchingGenres.length)];
+      // Step 1: Shuffle genres and select the first one
+      const shuffledGenres = shuffle(matchingGenres);
+      const randomGenre = shuffledGenres[0]; // Pick the first from shuffled
       console.log(`Selected Genre: ${randomGenre.name}`);
 
       // Step 2: Fetch anime from the selected genre
       const animeByGenre = await fetchAnimeByGenreId(randomGenre.mal_id);
 
       if (animeByGenre.length > 0) {
-        // Step 3: Select a random anime from the genre
-        const randomAnime =
-          animeByGenre[Math.floor(Math.random() * animeByGenre.length)];
+        // Step 3: Shuffle anime list and select the first one
+        const shuffledAnime = shuffle(animeByGenre);
+        const randomAnime = shuffledAnime[0];
         console.log(`Selected Anime: ${randomAnime.title}`);
 
         // Store the selected anime in session storage
@@ -54,38 +56,38 @@ const MoodSelector: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <div className="grid grid-cols-4 gap-6 px-72 justify-center py-8 mx-auto">
-        {Object.keys(moodToGenre).map((moodKey) => {
-          const mood = moodKey as Mood;
-          return (
-            <Button
-              variant="secondary"
-              size="lg"
-              className="font-bold"
-              key={mood}
-              onClick={() => handleMoodChange(mood)}
-            >
-              {mood}
-            </Button>
-          );
-        })}
-        <Link href={`/one-piece`}>
-          <Button variant="secondary" size="lg" className="font-bold">
-            The Best Anime
+  <div className="container mx-auto p-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 py-4">
+      {Object.keys(moodToGenre).map((moodKey) => {
+        const mood = moodKey as Mood;
+        return (
+          <Button
+            variant="secondary"
+            size="lg"
+            className="font-bold w-full"
+            key={mood}
+            onClick={() => handleMoodChange(mood)}
+          >
+            {mood}
           </Button>
-        </Link>
-      </div>
-
-      {selectedMood && (
-        <div>
-          <h3 className="font-bold text-white mt-8">
-            You selected: {selectedMood}
-          </h3>
-        </div>
-      )}
+        );
+      })}
+      <Link href={`/one-piece`}>
+        <Button variant="secondary" size="lg" className="font-bold w-full">
+          The Best Anime
+        </Button>
+      </Link>
     </div>
-  );
+
+    {selectedMood && (
+      <div className="text-center mt-6">
+        <h3 className="font-bold text-white">
+          You selected: {selectedMood}
+        </h3>
+      </div>
+    )}
+  </div>
+)
 };
 
 export default MoodSelector;

@@ -11,7 +11,6 @@ interface Props {
 }
 
 
-
 const AnimeCard: React.FC<Props> = ({ anime }) => {
   if (!anime) {
     return <p>No anime data found.</p>;
@@ -21,6 +20,8 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
     ...anime.genres.map((g) => ({ ...g, explicit: false })),
     ...anime.explicit_genres.map((g) => ({ ...g, explicit: true })), 
   ];
+
+  console.log(anime);
   
 
   return (
@@ -53,7 +54,7 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
         </CardHeader>
 
         <CardTitle className="text-white text-4xl py-4 ml-14">
-          {anime.title}
+          {anime.title_english}
         </CardTitle>
 
         <CardContent className="">
@@ -65,7 +66,9 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
               |
             </span>
             <h3 className="text-2xl font-semibold text-white pr-2">
-              {anime.episodes ?? "N/A"} Episodes
+              {anime.type === "Movie"
+                ? `${anime.episodes ?? "N/A"} Movie`
+                : `${anime.episodes ?? "N/A"} Episodes`}
             </h3>
             <span className="text-2xl font-semibold text-white pr-2">|</span>
             <h3 className="text-2xl font-semibold text-white pr-2">
@@ -112,6 +115,7 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
               )}
             </ul>
           </div>
+
           <CardDescription className="flex flex-col justify-center container mx-auto font-semibold text-slate-200 my-6">
             <p className="leading-relaxed tracking-wider">
               {anime.synopsis
