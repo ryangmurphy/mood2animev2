@@ -1,4 +1,9 @@
 export interface AnimeTrailer {
+  images: {
+    image_url: string;
+    small_image_url: string;
+    large_image_url: string;
+  }
   youtube_id: string;
   url: string;
   embed_url: string;
@@ -44,6 +49,15 @@ export interface AnimeStreaming {
   url: string;
 }
 
+export interface AnimeAired {
+  prop: {
+    from: {
+      day: number;
+      month: number;
+      year: number;
+    };
+  }
+}
 export interface AnimeImage {
   image_url: string;
   jpg: [
@@ -70,6 +84,7 @@ export interface Anime {
   title: string;
   title_english: string;
   year: number | string | null;
+  aired: AnimeAired;
   episodes: number;
   synopsis: string;
   demographics: AnimeDemographic[];
@@ -81,5 +96,4 @@ export interface Anime {
   rank: number;
   popularity: string;
   streaming: AnimeStreaming;
-  images: AnimeImage[];
 }

@@ -34,8 +34,8 @@ export default function SelectedAnimePage() {
   }
 
   return (
-    <div className="bg-zinc-900 h-full">
-      <div className="py-12">
+    <div className="bg-zinc-900 h-full overflow-x-hidden">
+      <div className="py-12 mx-4">
         <Navbar />
       </div>
       {anime ? <AnimeCard anime={anime} /> : <div>No anime data available</div>}

@@ -18,27 +18,22 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
 
   const combinedGenres = [
     ...anime.genres.map((g) => ({ ...g, explicit: false })),
-    ...anime.explicit_genres.map((g) => ({ ...g, explicit: true })), 
+    ...anime.explicit_genres.map((g) => ({ ...g, explicit: true })),
   ];
 
-  console.log(anime);
-  
-
   return (
-    <div className="container">
-      <Card className="bg-zinc-700 mx-auto rounded-lg w-full h-fit shadow-xl">
-        <CardHeader className="flex flex-col justify-center items-center">
+    <div className="container mx-auto p-4">
+      <Card className="bg-zinc-700 mx-auto w-full max-w-[800px] rounded-2xl overflow-hidden">
+        <CardHeader className="aspect-video p-4">
           {anime.trailer?.embed_url ? (
-            <div className="mx-auto rounded-lg video-responsive w-full">
+            <div className="relative w-full md:w-full lg:w-full pb-[56.25%] mb-4 h-64 md:h-full lg:h-full">
               <iframe
-                width="1080"
-                height="720"
                 src={anime.trailer.embed_url}
                 title={`${anime.title} Trailer`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="rounded-2xl w-full"
+                className="absolute w-full h-full rounded-2xl "
               ></iframe>
             </div>
           ) : (
@@ -48,52 +43,65 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
               height={400}
               alt="No trailer available"
               priority
-              className="rounded-lg w-fit h-fit"
+              className="rounded-lg w-full h-64 md:h-96 lg:h-96"
             />
           )}
         </CardHeader>
 
-        <CardTitle className="text-white text-4xl py-4 ml-14">
-          {anime.title_english}
+        <CardTitle className="text-white font-extrabold text-2xl md:text-4xl pb-2 md:pb-4 lg:pb-4 lg:text-4xl text-center md:text-left lg:text-left pl-4">
+          {anime.title_english ?? anime.title}
         </CardTitle>
 
-        <CardContent className="">
-          <div className="flex flex-row justify-start container">
-            <h3 className="text-2xl font-semibold text-white pr-2">
-              {anime.year ?? "Year N/A"}
+        <CardContent>
+          <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-4 text-sm md:text-base">
+            <h3 className="text-md sm:text-base font-semibold text-white">
+              {anime.year ?? anime.aired.prop.from.year}
             </h3>
-            <span className="text-2xl font-semibold text-white pr-2 mx-2">
-              |
+
+            <span className="text-sm text-white hidden sm:inline-block tracking-tighter">
+              ✦
             </span>
-            <h3 className="text-2xl font-semibold text-white pr-2">
+
+            <h3 className="text-md sm:text-md font-semibold text-white">
               {anime.type === "Movie"
-                ? `${anime.episodes ?? "N/A"} Movie`
+                ? `🎬 Movie`
                 : `${anime.episodes ?? "N/A"} Episodes`}
             </h3>
-            <span className="text-2xl font-semibold text-white pr-2">|</span>
-            <h3 className="text-2xl font-semibold text-white pr-2">
+
+            <span className="text-sm text-white hidden sm:inline-block tracking-tighter">
+              ✦
+            </span>
+
+            <h3 className="text-md sm:text-md font-semibold text-white">
               ⭐{anime?.score ? `${anime.score}` : "N/A"}
               <span className="text-white/70">/10</span>
             </h3>
 
-            <span className="text-2xl font-semibold text-white pr-2">|</span>
-            <h3 className="text-2xl font-semibold text-white pr-2">
-              🏆Overall Rank:{" "}
-              <span className="font-black tracking-wider text-destructive bg-white rounded-lg px-1 py-1">
+            <span className="text-sm text-white hidden sm:inline-block tracking-tighter">
+              ✦
+            </span>
+
+            <h3 className="text-md sm:text-md font-bold text-white">
+              🏆 Rank:{" "}
+              <span className="font-black text-destructive bg-white rounded-lg px-1">
                 {anime?.rank ? `#${anime.rank}` : "N/A"}
               </span>
             </h3>
 
-            <span className="text-2xl font-semibold text-white pr-2">|</span>
-            <h3 className="text-2xl font-semibold text-white pr-2">
-              🔥Popularity:{" "}
-              <span className="font-black tracking-wider text-destructive bg-white rounded-lg px-1 py-1">
-                {anime.popularity ? `#${anime.popularity}` : "N/A"}{" "}
+            <span className="text-sm text-white hidden sm:inline-block tracking-tighter">
+              ✦
+            </span>
+
+            <h3 className="text-md sm:text-md font-bold text-white">
+              🔥 Popularity:{" "}
+              <span className="font-black text-destructive bg-white rounded-lg px-1">
+                {anime.popularity ? `#${anime.popularity}` : "N/A"}
               </span>
             </h3>
           </div>
-          <div className="">
-            <ul className="flex flex-row justify-start container gap-4 pt-4">
+
+          <div className="pt-6">
+            <ul className="flex flex-wrap justify-center md:justify-start lg:justify-start gap-4">
               {combinedGenres.length > 0 ? (
                 combinedGenres.map((genre) => (
                   <Badge
@@ -116,8 +124,8 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
             </ul>
           </div>
 
-          <CardDescription className="flex flex-col justify-center container mx-auto font-semibold text-slate-200 my-6">
-            <p className="leading-relaxed tracking-wider">
+          <CardDescription className="flex flex-col justify-center mx-auto font-semibold text-slate-200 my-6 text-center sm:text-left">
+            <p className="leading-relaxed tracking-wider overflow-auto text-sm md:text-base lg:text-base">
               {anime.synopsis
                 ? anime.synopsis.replace("[Written by MAL Rewrite]", "").trim()
                 : "No synopsis available."}
@@ -125,9 +133,9 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
           </CardDescription>
         </CardContent>
 
-        <CardFooter className="flex flex-row justify-center container mx-auto gap-8">
+        <CardFooter className="flex flex-row justify-center gap-8 pb-6">
           <Link href={`/`}>
-            <Button className="bg-destructive  text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
+            <Button className="bg-destructive text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
               Home
             </Button>
           </Link>

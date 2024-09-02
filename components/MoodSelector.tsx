@@ -56,7 +56,7 @@ const MoodSelector: React.FC = () => {
   };
 
   return (
-  <div className="container mx-auto p-4">
+  <div className="container mx-auto pt-4">
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 py-4">
       {Object.keys(moodToGenre).map((moodKey) => {
         const mood = moodKey as Mood;
@@ -64,7 +64,7 @@ const MoodSelector: React.FC = () => {
           <Button
             variant="secondary"
             size="lg"
-            className="font-bold w-full"
+            className="font-bold"
             key={mood}
             onClick={() => handleMoodChange(mood)}
           >
@@ -73,7 +73,7 @@ const MoodSelector: React.FC = () => {
         );
       })}
       <Link href={`/one-piece`}>
-        <Button variant="secondary" size="lg" className="font-bold w-full">
+        <Button variant="secondary" size="lg" className="font-bold">
           The Best Anime
         </Button>
       </Link>
