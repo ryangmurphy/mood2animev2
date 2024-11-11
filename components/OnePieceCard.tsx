@@ -119,7 +119,7 @@ const OnePieceCard: React.FC<Props> = ({ anime }) => {
 
         <CardFooter className="flex flex-row justify-center gap-8 pb-6">
           <Link href={`/`}>
-            <Button className="bg-destructive text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
+            <Button className="bg-primary text-white font-semibold py-2 px-4 rounded-xl hover:bg-primary/70">
               Home
             </Button>
           </Link>
@@ -128,7 +128,7 @@ const OnePieceCard: React.FC<Props> = ({ anime }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="bg-destructive text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
+            <Button className="bg-primary text-white font-semibold py-2 px-4 rounded-xl hover:bg-primary/70">
               View on MAL
             </Button>
           </a>

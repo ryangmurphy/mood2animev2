@@ -1,35 +1,32 @@
+import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const Navbar = () => {
-  return (
-    <nav className="bg-zinc-700 rounded-2xl shadow-xl py-2 md:mb-4 max-w-[40rem] mx-auto flex justify-between items-center">
-      {/* Logo Container */}
-      <div className="flex-shrink-0 mr-auto ml-4">
-        <Link href="/">
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={100}
-            height={100}
-            className="rounded-full hover:drop-shadow-xl hover:scale-105"
-          />
-        </Link>
-      </div>
+import { Button } from "@/components/ui/button";
 
-      {/* Centered Title */}
-      <div className="flex-1 text-center">
-        <Link href="/">
-          <h1 className="font-extrabold text-3xl text-white tracking-wide">
+export default function Navbar() {
+  return (
+    <div className="flex min-h-32 items-center justify-center bg-transparent p-4">
+      <header className="flex w-full max-w-7xl items-center justify-between rounded-full bg-primary/90 px-6 py-3 backdrop-blur-sm">
+        <div className="flex items-center gap-8">
+          <Link className="flex items-center gap-2 font-semibold" href="/">
+            <div className="flex flex-col items-start leading-none">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={100}
+                height={100}
+                className="rounded-full hover:drop-shadow-xl hover:scale-105"
+              />
+            </div>
+          </Link>
+        </div>
+        <Link className="flex items-center gap-2 font-semibold" href="/">
+          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-extrabold text-4xl text-white">
             Mood2Anime
           </h1>
         </Link>
-      </div>
-
-      {/* Empty Div for spacing (if needed) */}
-      <div className="flex-shrink-0 ml-auto"></div>
-    </nav>
+      </header>
+    </div>
   );
-};
-
-export default Navbar;
+}

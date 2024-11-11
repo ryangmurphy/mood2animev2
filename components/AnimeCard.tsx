@@ -23,8 +23,8 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <Card className="bg-zinc-700 mx-auto w-full max-w-[800px] rounded-2xl overflow-hidden">
-        <CardHeader className="aspect-video p-4">
+      <Card className="bg-zinc-700 mx-auto w-full max-w-[800px] rounded-2xl overflow-hidden shadow-lg">
+        <CardHeader className="aspect-video p-4 relative">
           {anime.trailer?.embed_url ? (
             <div className="relative w-full md:w-full lg:w-full pb-[56.25%] mb-4 h-64 md:h-full lg:h-full">
               <iframe
@@ -33,7 +33,7 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="absolute w-full h-full rounded-2xl "
+                className="absolute w-full h-full rounded-2xl hover:shadow-lg transition-shadow duration-300"
               ></iframe>
             </div>
           ) : (
@@ -48,7 +48,7 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
           )}
         </CardHeader>
 
-        <CardTitle className="text-white font-extrabold text-2xl md:text-4xl pb-2 md:pb-4 lg:pb-4 lg:text-4xl text-center md:text-left lg:text-left pl-4">
+        <CardTitle className="text-white font-extrabold text-3xl md:text-4xl pb-2 md:pb-4 lg:pb-4 lg:text-4xl text-center md:text-left lg:text-left pl-4">
           {anime.title_english ?? anime.title}
         </CardTitle>
 
@@ -135,12 +135,12 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
 
         <CardFooter className="flex flex-row justify-center gap-8 pb-6">
           <Link href={`/`}>
-            <Button className="bg-destructive text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
+            <Button className="bg-primary text-white font-semibold py-2 px-4 rounded-xl hover:bg-primary/70">
               Home
             </Button>
           </Link>
           <a href={anime.url} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-destructive text-white font-semibold py-2 px-4 rounded-xl hover:bg-destructive/70">
+            <Button className="bg-primary text-white font-semibold py-2 px-4 rounded-xl hover:bg-primary/70">
               View on MAL
             </Button>
           </a>

@@ -8,12 +8,8 @@ import React from "react";
 
 function page() {
   return (
-    <div className="bg-zinc-900 h-screen w-full overflow-x-hidden">
-      <div className="pt-16 px-4">
-        <Navbar />
-      </div>
+    <div className="bg-zinc-800 h-screen w-full overflow-x-hidden">
       <Home />
-      <Footer />
     </div>
   );
 }
