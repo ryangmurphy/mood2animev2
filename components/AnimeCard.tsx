@@ -43,7 +43,7 @@ const AnimeCard: React.FC<Props> = ({ anime }) => {
               height={400}
               alt="No trailer available"
               priority
-              className="rounded-lg w-full h-64 md:h-96 lg:h-96"
+              className="rounded-lg w-full h-auto"
             />
           )}
         </CardHeader>

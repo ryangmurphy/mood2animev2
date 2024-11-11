@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import MoodSelector from "@/components/MoodSelector";
-import Header from "@/components/Navbar"
-import Footer from "@/components/Footer"
+import Header from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 import { Button } from "@/components/ui/button";
 
 const Home = () => {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       <div className="relative z-50">
         <Header />
       </div>
@@ -16,7 +16,8 @@ const Home = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1400 1000"
-          className="min-h-screen min-w-full"
+          className="h-full w-full"
+          preserveAspectRatio="xMidYMid slice"
         >
           <defs>
             <pattern
@@ -37,22 +38,23 @@ const Home = () => {
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </div>
-      <div className="relative pt-28 pb-24">
-        <div className="absolute left-0 z-10 hidden h-full"></div>
-        <div className="md:-space-x-26 container relative flex flex-col items-start md:flex-row md:items-center">
-          <div className="z-20 -mx-[calc(theme(container.padding))] w-[calc(100%+2*theme(container.padding))] shrink-0 bg-background px-[calc(theme(container.padding))] pt-32 md:w-1/2 md:bg-transparent md:pb-32">
-            <div className="flex flex-col items-start text-left">
-              <div className="max-w-md bg-white rounded-2xl border-r-8 border-r-primary/40 shadow-md shadow-gray-300 leading-loose">
-                <h1 className="my-6 ml-3 text-pretty text-primary capitalize text-2xl leading-loose font-bold lg:text-7xl">
+      <div className="relative pt-16 pb-16 md:pt-28 md:pb-24">
+        <div className="container relative flex flex-col items-center gap-8 md:flex-row md:items-center">
+          <div className="z-20 w-full md:w-1/2 px-4 md:px-0">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <div className="max-w-md bg-white rounded-2xl border-r-4 border-primary/40 shadow-md shadow-gray-300 leading-loose p-4 md:p-12">
+                <h1 className="my-4 text-primary text-3xl font-bold capitalize sm:text-3xl md:text-5xl lg:text-5xl md:leading-loose">
                   Explore the top-rated{" "}
-                  <span className="bg-primary rounded-2xl text-white text-center flex justify-center w-64 mx-auto">Anime</span> tailored
-                  to your mood
+                  <span className="bg-primary text-white rounded-xl py-1 px-3 md:leading-snug">
+                    Anime
+                  </span>{" "}
+                  tailored to your mood
                 </h1>
               </div>
             </div>
           </div>
-          <div>
-            <div className="flex flex-col gap-16 pb-8 pt-12 md:py-32">
+          <div className="w-full md:w-1/2">
+            <div className="flex flex-col gap-8 pb-8 pt-8 md:py-32">
               <MoodSelector />
             </div>
           </div>
