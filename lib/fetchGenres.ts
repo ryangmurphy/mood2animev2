@@ -1,15 +1,22 @@
-import { Anime } from "../types/Anime";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const fetchGenres = async (): Promise<any[]> => {
   try {
-    const response = await fetch("https://api.jikan.moe/v4/genres/anime");
+    const response = await fetch(`${API_BASE_URL}/genres/anime`, {
+      next: { revalidate: 86400 }, 
+    });
+
     if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.statusText}`);
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const data = await response.json();
-    return data.data; // This contains the list of genres
+    return data.data;
   } catch (error) {
-    console.error("API Error:", error);
+    if (error instanceof Error) {
+      console.error(`Failed to fetch genres: ${error.message}`);
+    }
     return [];
   }
 };

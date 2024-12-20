@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Mood, moodToGenre } from "../types/Mood";
-import { Anime } from "../types/Anime";
 
 import { Button } from "@/components/ui/button";
 import fetchGenres from "@/lib/fetchGenres";
@@ -56,38 +55,42 @@ const MoodSelector: React.FC = () => {
   };
 
   return (
-  <div className="container mx-auto pt-4">
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 py-4">
-      {Object.keys(moodToGenre).map((moodKey) => {
-        const mood = moodKey as Mood;
-        return (
-          <Button
-            variant="secondary"
-            size="lg"
-            className="font-bold"
-            key={mood}
-            onClick={() => handleMoodChange(mood)}
-          >
-            {mood}
+    <div className="container mx-auto pt-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 py-4">
+        {Object.keys(moodToGenre).map((moodKey) => {
+          const mood = moodKey as Mood;
+          return (
+            <Button
+              variant="secondary"
+              size="lg"
+              className="font-bold"
+              key={mood}
+              onClick={() => handleMoodChange(mood)}
+            >
+              {mood}
+            </Button>
+          );
+        })}
+        <Link href={`/one-piece`}>
+          <Button variant="secondary" size="lg" className="font-bold">
+            The Best Anime
           </Button>
-        );
-      })}
-      <Link href={`/one-piece`}>
-        <Button variant="secondary" size="lg" className="font-bold">
-          The Best Anime
-        </Button>
-      </Link>
-    </div>
-
-    {selectedMood && (
-      <div className="text-center mt-6">
-        <h3 className="font-bold text-white">
-          You selected: {selectedMood}
-        </h3>
+        </Link>
       </div>
-    )}
-  </div>
-)
+
+      <div className="h-20 mt-6">
+        <div 
+          className={`text-center p-4 transition-opacity duration-300 ${
+            selectedMood ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <h3 className="font-bold text-white">
+            {selectedMood ? `You selected: ${selectedMood}` : '\u00A0'}
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MoodSelector;

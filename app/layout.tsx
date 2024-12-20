@@ -6,13 +6,12 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import { cn } from "@/lib/utils";
-
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://mood2anime.netlify.app/"),
   title: {
     default: "Mood2Anime: Top Rated Anime for Your Mood",
     template: "%s | Mood2Anime",
@@ -21,19 +20,18 @@ const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://mood2anime.vercel.app/",
+    url: "/",
     siteName: "Mood2Anime",
     images: [
       {
-        url: "https://mood2anime.vercel.app/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "/logo.png",
+        width: 500,
+        height: 500,
         alt: "Mood2Anime",
       },
     ],
   },
-
-}
+};
 
 export default function RootLayout({
   children,
